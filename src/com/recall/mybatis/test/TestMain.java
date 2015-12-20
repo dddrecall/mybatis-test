@@ -24,7 +24,7 @@ public class TestMain {
 	private SqlSessionFactory sessionFactory = null;
 	private SqlSession sqlSession = null;
 	private PersonMapper personMapper = null;
-	   
+	       
 	@Before
 	public void init() throws IOException{
 		InputStream stream = Resources.getResourceAsStream("mybatis-config.xml");
