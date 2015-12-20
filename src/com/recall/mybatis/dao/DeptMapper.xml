@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recall.mybatis.dao.DeptMapper">
+	
+	<resultMap type="Dept" id="DeptResultMap">
+		<id property="id" column="id"/>
+		<result property="deptName" column="deptName"/>
+		<result property="locAdd" column="locAdd"/>
+		<collection property="emps" column="id" ofType="Emp" select="com.recall.mybatis.dao.EmpMapper.getEmpsByDeptId" />
+	</resultMap>
+	
+	<select id="getDeptById" parameterType="Integer" resultMap="DeptResultMap">
+		SELECT * FROM tbl_dept WHERE id = #{id}
+	</select>
+	
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recall.mybatis.dao.PersonMapper">
+
+	<insert id="add" parameterType="com.recall.mybatis.entites.Person" 
+		useGeneratedKeys="true" keyProperty="id"
+		>
+		INSERT INTO
+		tbl_person(name,age,birth,registerTime,salary)
+		values(#{name},#{age},#{birth},#{registerTime},#{salary})
+	</insert>
+
+
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM tbl_person where
+		id = #{id}
+	</delete>
+
+	<update id="update" parameterType="com.recall.mybatis.entites.Person">
+		UPDATE tbl_person set
+		name=#{name},age=#{age},birth=#{birth},
+		registerTime=#{registerTime},salary=#{salary}
+		where id=#{id}
+	</update>
+
+	<select id="getById" parameterType="Integer"
+		resultType="com.recall.mybatis.entites.Person">
+		SELECT * FROM tbl_person where id=#{id}
+	</select>
+
+	<select id="getAllPersons" resultType="com.recall.mybatis.entites.Person">
+		SELECT * FROM tbl_person
+	</select>
+	
+	<select id="getAllPersonsMap" resultType="hashmap">
+		SELECT * FROM tbl_person
+	</select>
+
+</mapper>

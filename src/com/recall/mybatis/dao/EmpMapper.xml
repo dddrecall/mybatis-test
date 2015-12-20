@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recall.mybatis.dao.EmpMapper">
+
+	<resultMap type="Emp" id="EmpResutlMap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<association property="dept" column="deptId"
+			select="com.recall.mybatis.dao.DeptMapper.getDeptById" />
+	</resultMap>
+
+	<select id="getEmpsByDeptId" parameterType="Integer" resultMap="EmpResutlMap">
+		SELECT * FROM tbl_emp WHERE deptId = #{deptId}
+	</select>
+
+
+	<select id="getEmpById" parameterType="Integer" resultMap="EmpResutlMap">
+		SELECT * FROM tbl_emp WHERE id = #{id}
+	</select>
+
+</mapper>

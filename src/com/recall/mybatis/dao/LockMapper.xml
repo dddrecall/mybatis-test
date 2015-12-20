@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recall.mybatis.dao.LockMapper">
+
+	
+	<!-- 
+		一次性加载
+	<resultMap type="Lock" id="LockResultMap">
+		<id property="id" column="l_id"/>
+		<result property="lockName" column="lockName"/>
+		<association property="key" javaType="com.recall.mybatis.entites.Key" column="key_id">
+			<id property="id" column="k_id"/>
+			<result property="keyName" column="keyName"/>
+		</association>
+	</resultMap>
+	
+	SELECT l.id as l_id,l.lockName as lockName,k.id as k_id,k.keyName as keyName
+		FROM tbl_lock l 
+		LEFT OUTER JOIN tbl_key k 
+		ON l.key_id = k.id 
+		WHERE l.id = #{id}
+	 -->	
+	 
+	 <resultMap type="Lock" id="LockResultMap">
+	 	<id property="id" column="id"/>
+		<result property="lockName" column="lockName"/>
+		<association property="key" column="key_id" select="com.recall.mybatis.dao.KeyMapper.getKeyById">
+		</association>
+	 </resultMap>
+	 
+	<select id="geLockById" parameterType="Integer" resultMap="LockResultMap">
+		SELECT * FROM tbl_lock WHERE id = #{id}
+	</select>
+	
+</mapper>

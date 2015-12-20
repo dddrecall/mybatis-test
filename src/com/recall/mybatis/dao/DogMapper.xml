@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recall.mybatis.dao.DogMapper">
+	<select id="getByIdAs" parameterType="Integer" resultType="Dog">
+		SELECT 
+			id,dog_name as dogName,dog_Weight as dogWeight 
+		FROM tbl_dog 
+		WHERE id = #{id}
+	</select>
+	
+	<resultMap type="Dog" id="DogResultMap">
+		<id property="id" column="id"/>
+		<result property="dogName" column="dog_Name"/>
+		<result property="dogWeight" column="dog_Weight"/>
+	</resultMap>
+	
+	<select id="getByIdResultMap" parameterType="Integer" resultMap="DogResultMap">
+		SELECT * FROM tbl_dog WHERE id = #{id}
+	</select>
+</mapper>

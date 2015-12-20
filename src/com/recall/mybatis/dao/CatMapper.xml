@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recall.mybatis.dao.CatMapper">
+
+	<!-- mybatis和ehcache结合-->
+ 	<cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+	<!-- 
+	<cache eviction="FIFO" readOnly="true" flushInterval="60000" size="500" ></cache>
+	 -->
+	<!-- 
+		parameterType 入参只能有一个 所以要传递多个数据的时候
+		可以选择传递一个POJO对象或者是一个map
+	 -->
+	 
+	<select id="getByNameAndIdMap" parameterType="Cat" resultType="Cat" useCache="true">
+		SELECT * FROM tbl_cat where id=#{id} and name=#{name}	
+	</select>
+	
+	<select id="getByNameAndId" parameterType="map" resultType="Cat">
+		SELECT * FROM tbl_cat where id=#{id} and name=#{name}
+	</select>	
+	
+	<select id="getByName" parameterType="map" resultType="Cat" useCache="true">
+		SELECT * FROM tbl_cat where name like #{name}
+	</select>
+	
+	
+</mapper>
