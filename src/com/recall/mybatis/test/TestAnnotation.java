@@ -16,7 +16,7 @@ import org.junit.Test;
 import com.recall.mybatis.dao.PersonMapper;
 import com.recall.mybatis.dao.PersonMapperAnnotation;
 import com.recall.mybatis.entites.Person;
-
+    
 public class TestAnnotation {
 	
 	private SqlSessionFactory sessionFactory = null;
