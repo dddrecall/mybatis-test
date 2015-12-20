@@ -18,7 +18,7 @@ public class TestOne2Many {
 
 	private SqlSessionFactory sessionFactory = null;
 	private SqlSession sqlSession = null;
-
+    
 	@Before
 	public void init() throws IOException {
 		InputStream stream = Resources
